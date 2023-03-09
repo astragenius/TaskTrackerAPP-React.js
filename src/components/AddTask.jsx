@@ -1,10 +1,31 @@
 
 import React, { useState } from 'react'
 
-const AddTask = () => {
+const AddTask = ({taskList, setTaskList}) => {
 
 
   const [addModal, setAddModal] = useState(false)
+  const [projectName, setProjectName] = useState('')
+  const [projectDescription, setProjectDescription] = useState('')
+
+  const getInput = e => {
+    e.preventDefault();
+    const {name, value} = e.target
+    if(name === 'projectName') setProjectName(value) 
+    if(name === 'description') setProjectDescription(value)
+
+    
+  }
+
+  const setTask = () => {
+    setTaskList(
+      [...taskList, {projectName, projectDescription}]
+    )
+    setAddModal(false)
+    setProjectName('')
+    setProjectDescription('')
+    
+  }
 
 
 
@@ -27,7 +48,7 @@ const AddTask = () => {
                   fixed inset-0 z-100'>
                     <div className='w-9/12 max-w-lg bg-white rounded-lg shadow-md relative flex flex-col'>
 
-                        <div className='flex flex-row justify-between p-5'>
+                        <div className='flex flex-row justify-between p-5 border-b border-slate-200 rounded-t'>
 
                             <h3 className='bg-white text-3xl font-semibold'>Add New Task</h3>
 
@@ -48,7 +69,9 @@ const AddTask = () => {
                               id='project-name'
                               type="text"
                               placeholder='Project Name'
-                              name='project name'
+                              name='projectName'
+                              value={projectName}
+                              onChange={getInput}
                               required
 
                                 
@@ -60,16 +83,19 @@ const AddTask = () => {
                             >Project Description</label>
                             <textarea 
                             className='w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-5 leading-tight focus:outline-none focus:bg-white'
-                            name="" 
+                            name="description" 
                             id="task-description" 
-                            cols="3"
+                            rows="5"
                             placeholder='Task description'
+                            value={projectDescription}
+                            onChange={getInput}
 
                             ></textarea>
                           </div>
                         </form>
                           <div className='flex justify-end p-6 border-t border-slate 200 rounded-b'>
-                            <button className='bg-green-500 text-white font-semibold text-sm uppercase px-6 py-3 rounded hover:opacity-70'>
+                            <button className='bg-green-500 text-white font-semibold text-sm uppercase px-6 py-3 rounded hover:opacity-70'
+                              onClick={setTask}>
                                 Add Task
                             </button>
                           </div>
