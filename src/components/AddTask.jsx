@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid';
 
 const AddTask = ({taskList, setTaskList}) => {
 
@@ -19,7 +20,7 @@ const AddTask = ({taskList, setTaskList}) => {
 
   const setTask = () => {
     setTaskList(
-      [...taskList, {projectName, projectDescription}]
+      [...taskList, {id: uuidv4(), projectName, projectDescription}]
     )
     setAddModal(false)
     setProjectName('')
