@@ -7,7 +7,7 @@ import ToDo from "./components/ToDo"
 function App() {
 
   const [taskList, setTaskList] = useState([])
-  console.log(taskList)
+ 
 
  
   return (

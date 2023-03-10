@@ -18,7 +18,7 @@ const ToDo = ({key, task, taskList, setTaskList, index, id}) => {
 
           <div className='w-full flex justify-center'>
 
-              <DeleteTask id={id} task={task} taskList={taskList} setTaskList={setTaskList}/>
+              <DeleteTask id={id} taskList={taskList} setTaskList={setTaskList}/>
           </div>
 
 

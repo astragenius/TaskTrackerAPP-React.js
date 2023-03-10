@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DeleteTask = ({id, task, taskList, setTaskList}) => {
+const DeleteTask = ({id, taskList, setTaskList}) => {
 
     const delTask = () => {
         
