@@ -22,14 +22,10 @@ const EditTask = ({taskList, setTaskList, task, index}) => {
   const setUpdate = (e) => {
     e.preventDefault();
     let taskIndex = taskList.indexOf(task)
-    taskList.splice(taskIndex, 1, {
-      id: task.id,
-      projectName: projectName,
-      projectDescription: projectDescription,
-      duration: task.duration
-    })
-    localStorage.setItem('taskList', JSON.stringify(taskList))
-    window.location.reload()
+    taskList.splice(taskIndex, 1)
+    setTaskList(
+      [...taskList, {id: task.id, projectName, projectDescription, duration:task.duration}]
+    )
 
     setEditModal(false)
   }

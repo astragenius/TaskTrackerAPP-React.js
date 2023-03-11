@@ -7,7 +7,13 @@ import Stopwatch from './Stopwatch'
 const ToDo = ({key, task, taskList, setTaskList, index, id}) => {
 
     const [{isDragging}, drag] = useDrag(() => ({
-      type: 'todo',
+      type: 'toDo',
+      item: {
+        id: index,
+        projectName: task.projectName,
+        projectDescription: task.projectDescription,
+        duration: task.duration
+      },
       collect: (monitor) => ({
         isDragging: !!monitor.isDragging(),
       })
@@ -15,7 +21,7 @@ const ToDo = ({key, task, taskList, setTaskList, index, id}) => {
 
   return (
     <>  
-        <section className='flex flex-col items-start justify-start bg-white my-4 ml-6 py-4 px-6 w-3/4 max-w-lg' ref={drag}>
+        <section className='flex flex-col  items-start justify-start bg-white my-4 ml-6 py-4 px-6 w-3/4 max-w-lg' ref={drag}>
 
           <div className='w-full flex flex-row justify-between'>
               <p className='text-xl font-semibold'>{task.projectName}</p>

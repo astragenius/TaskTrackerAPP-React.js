@@ -6,7 +6,7 @@ const DeleteTask = ({id, taskList, setTaskList}) => {
         let newTasklist = taskList.filter((task) => {
             return task.id !== id;
         })
-        localStorage.setItem('taskList', JSON.stringify(newTasklist))
+      
       
     }
 

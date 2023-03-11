@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useDrop } from "react-dnd"
 import AddTask from "./components/AddTask"
 import ToDo from "./components/ToDo"
 
@@ -7,11 +8,21 @@ import ToDo from "./components/ToDo"
 function App() {
 
   const [taskList, setTaskList] = useState([])
+  const [completed, setCompleted] = useState([])
   
-  useEffect(() => {
-    let array = localStorage.getItem('taskList')
-    if(array) setTaskList(JSON.parse(array))
-  }, [])
+
+  const [{isOver}, drop] = useDrop(() => ({
+    accept: 'toDo',
+    drop: (item) => addTocompleted(item.id, item.projectName, item.projectDescription, item.duration),
+    collect: (monitor) => ({
+      isOver: !!monitor.isOver(),
+    })
+  }))
+
+  const addTocompleted = (id, projectName, projectDescription, duration) => {
+    const moveTask = taskList.filter((task) => id === task.id)
+    setCompleted((completed) => [...completed, {moveTask, id, projectName, projectDescription, duration}])
+  }
  
   return (
     <div>
@@ -32,8 +43,15 @@ function App() {
               
             )}
           </section>
-          <section className="w-full">
-                        <h2 className="bg-slate-300 text-2xl font-semibold uppercase w-3/4 max-w-lg ml-6 my-4 py-2 px-4">Complete:</h2>
+          <section className="w-full" ref={drop}>
+            <h2 className="bg-slate-300 text-2xl font-semibold uppercase w-3/4 max-w-lg ml-6 my-4 py-2 px-4">Complete:</h2>
+            {completed.map((task, i) =>
+              
+                <ToDo key={task.id} task={task} taskList={taskList} setTaskList={setTaskList} index={i} id={task.id}/>
+            
+            
+              )}
+                      
           </section>
       </div>
     </div>
