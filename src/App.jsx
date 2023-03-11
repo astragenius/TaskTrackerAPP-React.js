@@ -21,15 +21,21 @@ function App() {
           <AddTask taskList={taskList} setTaskList={setTaskList}/>
           <p className="text-xl">to add a new task</p>
       </div>
-      <section>
-        <h2 className="bg-slate-300 text-2xl font-semibold uppercase w-3/4 max-w-lg ml-6 my-4 py-2 px-4">To Do:</h2>
-        {taskList.map((task, i) =>
-          
-            <ToDo key={task.id} task={task} taskList={taskList} setTaskList={setTaskList} index={i} id={task.id}/>
-          
-          
-        )}
-      </section>
+      <div className="flex flex-row">
+
+          <section className="w-full">
+            <h2 className="bg-slate-300 text-2xl font-semibold uppercase w-3/4 max-w-lg ml-6 my-4 py-2 px-4">To Do:</h2>
+            {taskList.map((task, i) =>
+              
+                <ToDo key={task.id} task={task} taskList={taskList} setTaskList={setTaskList} index={i} id={task.id}/>
+              
+              
+            )}
+          </section>
+          <section className="w-full">
+                        <h2 className="bg-slate-300 text-2xl font-semibold uppercase w-3/4 max-w-lg ml-6 my-4 py-2 px-4">Complete:</h2>
+          </section>
+      </div>
     </div>
   )
   
