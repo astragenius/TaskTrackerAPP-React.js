@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { MdPlayCircleOutline, MdStop, MdRestartAlt } from "react-icons/md";
 
 
 const Stopwatch = () => {
@@ -20,31 +21,35 @@ const Stopwatch = () => {
     }, [running])
 
   return (
-    <div>
-        <div className='text-2xl font-semibold'>
-
-            <span>{('0' + Math.floor((time / 6000) % 60)).slice(-2)}:</span>
+    <div className='w-full flex flex-row items-center justify-evenly'>
+        <div className='w-1/4 text-xl font-semibold py-4'>
+            <span>{('0' + Math.floor((time / 3600000) % 24)).slice(-2)}:</span>
+            <span>{('0' + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
             <span>{('0' + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
-            <span>{('0' + Math.floor((time / 10) % 100)).slice(-2)}</span>
+            <span className=''>{('0' + Math.floor((time / 10) % 100)).slice(-2)}</span>
         </div>
-        <div className='flex justify-between'>
+        <div className='w-1/3 max-w-sm flex flex-row justify-evenly gap-4'>
             {running ? 
             (<button
             onClick={() => setRunning(false)}
-            className='bg-red-500 text-white'
+            className='flex gap-1.5 py-1 px-2 items-center rounded bg-red-500 text-white'
             >
-            
+            <MdStop/>
             Stop</button>) : 
             (<button
             onClick={() => setRunning(true)}
-            className='bg-green-500 text-white'
+            className='flex gap-1.5 py-1 px-2 items-center rounded bg-green-500 text-white'
             >
+            <MdPlayCircleOutline/>
             Start</button>)}
            
             
             <button
-            className='bg-blue-300 text-white'
-            onClick={() => setTime(0)}>Reset</button>
+            className='flex gap-1.5 py-1 px-2 items-center rounded bg-blue-300 text-white'
+            onClick={() => setTime(0)}
+            >
+            <MdRestartAlt/>
+            Reset</button>
         </div>
 
     </div>

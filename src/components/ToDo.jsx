@@ -15,7 +15,7 @@ const ToDo = ({key, task, taskList, setTaskList, index, id}) => {
           </div>
          
               <p className='text-lg py-2'>{task.projectDescription}</p>
-           <div>
+           <div className='w-full flex flex-col items-center justify-center'>
             <Stopwatch/>
            </div>
 
