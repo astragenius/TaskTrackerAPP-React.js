@@ -1,6 +1,7 @@
 import React from 'react'
 import DeleteTask from './DeleteTask'
 import EditTask from './EditTask'
+import Stopwatch from './Stopwatch'
 
 const ToDo = ({key, task, taskList, setTaskList, index, id}) => {
   return (
@@ -14,7 +15,9 @@ const ToDo = ({key, task, taskList, setTaskList, index, id}) => {
           </div>
          
               <p className='text-lg py-2'>{task.projectDescription}</p>
-           
+           <div>
+            <Stopwatch/>
+           </div>
 
           <div className='w-full flex justify-center'>
 
