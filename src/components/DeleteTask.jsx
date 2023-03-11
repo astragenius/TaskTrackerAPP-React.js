@@ -3,13 +3,11 @@ import React from 'react'
 const DeleteTask = ({id, taskList, setTaskList}) => {
 
     const delTask = () => {
-        
-        setTaskList(
-            taskList.filter((task) => {
-                return task.id !== id;
-            })
-        )
-     
+        let newTasklist = taskList.filter((task) => {
+            return task.id !== id;
+        })
+        localStorage.setItem('taskList', JSON.stringify(newTasklist))
+      
     }
 
   return (

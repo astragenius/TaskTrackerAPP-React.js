@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { MdPlayCircleOutline, MdStop, MdRestartAlt } from "react-icons/md";
 
 
-const Stopwatch = () => {
-    const [time, setTime] = useState(0)
+const Stopwatch = ({taskList, task}) => {
+    const [time, setTime] = useState(task.duration)
     const [running, setRunning] = useState(false);
 
 
@@ -19,6 +19,28 @@ const Stopwatch = () => {
         }
         return () => clearInterval(interval)
     }, [running])
+    const getDuration = () => {
+        setRunning(false)
+        let taskIndex = taskList.indexOf(task)
+        taskList.splice(taskIndex, 1, {
+            id: task.id,
+            projectName: task.projectName,
+            projectDescription: task.projectDescription,
+            duration: time
+        })
+        localStorage.setItem('taskList', JSON.stringify(taskList))
+        window.location.reload()
+    }
+    const resetDuration = () => {
+        let taskIndex = taskList.indexOf(task)
+        taskList.splice(taskIndex, 1, {
+            id: task.id,
+            projectName: task.projectName,
+            projectDescription: task.projectDescription,
+            duration: 0
+        })
+        localStorage.setItem('taskList', JSON.stringify(taskList))
+    }
 
   return (
     <div className='w-full flex flex-row items-center justify-evenly'>
@@ -31,7 +53,7 @@ const Stopwatch = () => {
         <div className='w-1/3 max-w-sm flex flex-row justify-evenly gap-4'>
             {running ? 
             (<button
-            onClick={() => setRunning(false)}
+            onClick={getDuration}
             className='flex gap-1.5 py-1 px-2 items-center rounded bg-red-500 text-white'
             >
             <MdStop/>
@@ -46,7 +68,7 @@ const Stopwatch = () => {
             
             <button
             className='flex gap-1.5 py-1 px-2 items-center rounded bg-blue-300 text-white'
-            onClick={() => setTime(0)}
+            onClick={resetDuration}
             >
             <MdRestartAlt/>
             Reset</button>
