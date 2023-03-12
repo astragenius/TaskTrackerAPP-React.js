@@ -4,12 +4,12 @@ import DeleteTask from './DeleteTask'
 import EditTask from './EditTask'
 import Stopwatch from './Stopwatch'
 
-const ToDo = ({key, task, taskList, setTaskList, index, id}) => {
+const ToDo = ({task, taskList, setTaskList, index, id, completed, setCompleted}) => {
 
     const [{isDragging}, drag] = useDrag(() => ({
       type: 'toDo',
       item: {
-        id: index,
+        id: task.id,
         projectName: task.projectName,
         projectDescription: task.projectDescription,
         duration: task.duration
@@ -36,7 +36,7 @@ const ToDo = ({key, task, taskList, setTaskList, index, id}) => {
 
           <div className='w-full flex justify-center'>
 
-              <DeleteTask id={id} taskList={taskList} setTaskList={setTaskList}/>
+              <DeleteTask id={id} taskList={taskList} setTaskList={setTaskList} completed={completed} setCompleted={setCompleted}/>
           </div>
 
 

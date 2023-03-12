@@ -9,19 +9,28 @@ function App() {
 
   const [taskList, setTaskList] = useState([])
   const [completed, setCompleted] = useState([])
-  
+  console.log(taskList)
 
   const [{isOver}, drop] = useDrop(() => ({
+    
     accept: 'toDo',
-    drop: (item) => addTocompleted(item.id, item.projectName, item.projectDescription, item.duration),
+    drop: (item) =>{ 
+      console.log(taskList)
+       addTocompleted(taskList, item.id, item.projectName, item.projectDescription, item.duration)
+    },
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
     })
   }))
 
-  const addTocompleted = (id, projectName, projectDescription, duration) => {
-    const moveTask = taskList.filter((task) => id === task.id)
-    setCompleted((completed) => [...completed, {moveTask, id, projectName, projectDescription, duration}])
+  const addTocompleted = (list, id, projectName, projectDescription, duration) => {
+    console.log(list, id)
+    // taskList ist leer... keine ahnung warum!!!!
+    setCompleted((completed) => [...completed, {id, projectName, projectDescription, duration}])
+    setTaskList((taskList) => [...taskList.filter((task) => {
+      id !== task.id
+    })])
+    
   }
  
   return (
@@ -43,7 +52,7 @@ function App() {
             <h2 className="bg-slate-300 text-2xl font-semibold uppercase my-4 py-2 px-4 rounded">To Do:</h2>
             {taskList.map((task, i) =>
               
-                <ToDo key={task.id} task={task} taskList={taskList} setTaskList={setTaskList} index={i} id={task.id}/>
+                <ToDo key={task.id} task={task} taskList={taskList} setTaskList={setTaskList} index={i} id={task.id} completed={completed} setCompleted={setCompleted}/>
               
               
             )}
@@ -52,7 +61,7 @@ function App() {
             <h2 className="bg-slate-300 text-2xl font-semibold uppercase my-4 py-2 px-4 rounded">Complete:</h2>
             {completed.map((task, i) =>
               
-                <ToDo key={task.id} task={task} taskList={taskList} setTaskList={setTaskList} index={i} id={task.id}/>
+                <ToDo key={task.id} task={task} taskList={taskList} setTaskList={setTaskList} index={i} id={task.id} completed={completed} setCompleted={setCompleted}/>
             
             
               )}

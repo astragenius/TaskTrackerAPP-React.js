@@ -1,14 +1,22 @@
 import React from 'react'
 
-const DeleteTask = ({id, taskList, setTaskList}) => {
+const DeleteTask = ({id, taskList, setTaskList, completed, setCompleted}) => {
 
     const delTask = () => {
+        
         let newTasklist = taskList.filter((task) => {
             return task.id !== id;
+        })
+
+        let newTaskList2 = completed.filter((task) => {
+          return task.id !== id;
         })
         
         setTaskList(
           [...newTasklist]
+        )
+        setCompleted(
+          [...newTaskList2]
         )
       
     }
