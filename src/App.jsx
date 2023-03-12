@@ -25,17 +25,19 @@ function App() {
   }
  
   return (
-    <div>
-      <h1 className="text-3xl font-bold py-4 pl-6">My Task Tracker</h1>
-      <div className="flex flex-row items-center">
-          <p className="text-xl pl-6">Click</p>
-          <AddTask taskList={taskList} setTaskList={setTaskList}/>
-          <p className="text-xl">to add a new task</p>
+    <main className="flex flex-col px-5">
+      <div className="bg-slate-300 py-3 mt-3 rounded">
+        <h1 className="text-4xl text-center font-bold">My Task Tracker</h1>
+        <div className="flex flex-row items-center my-3">
+            <p className="text-xl pl-6">Click</p>
+            <AddTask taskList={taskList} setTaskList={setTaskList}/>
+            <p className="text-xl">to add a new task</p>
+        </div>
       </div>
-      <div className="flex flex-row">
+      <div className="flex flex-col md:flex-row">
 
           <section className="w-full">
-            <h2 className="bg-slate-300 text-2xl font-semibold uppercase w-3/4 max-w-lg ml-6 my-4 py-2 px-4">To Do:</h2>
+            <h2 className="bg-slate-300 text-2xl font-semibold uppercase my-4 py-2 px-4 rounded">To Do:</h2>
             {taskList.map((task, i) =>
               
                 <ToDo key={task.id} task={task} taskList={taskList} setTaskList={setTaskList} index={i} id={task.id}/>
@@ -44,7 +46,7 @@ function App() {
             )}
           </section>
           <section className="w-full" ref={drop}>
-            <h2 className="bg-slate-300 text-2xl font-semibold uppercase w-3/4 max-w-lg ml-6 my-4 py-2 px-4">Complete:</h2>
+            <h2 className="bg-slate-300 text-2xl font-semibold uppercase my-4 py-2 px-4 rounded">Complete:</h2>
             {completed.map((task, i) =>
               
                 <ToDo key={task.id} task={task} taskList={taskList} setTaskList={setTaskList} index={i} id={task.id}/>
@@ -54,7 +56,7 @@ function App() {
                       
           </section>
       </div>
-    </div>
+    </main>
   )
   
 }

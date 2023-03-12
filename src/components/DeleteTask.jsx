@@ -6,7 +6,10 @@ const DeleteTask = ({id, taskList, setTaskList}) => {
         let newTasklist = taskList.filter((task) => {
             return task.id !== id;
         })
-      
+        
+        setTaskList(
+          [...newTasklist]
+        )
       
     }
 
