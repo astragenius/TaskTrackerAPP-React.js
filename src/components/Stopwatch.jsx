@@ -22,14 +22,14 @@ const Stopwatch = ({taskList, task}) => {
     
 
   return (
-    <div className='w-full flex flex-col items-center'>
-        <div className='text-xl font-semibold py-4'>
+    <div className='w-full flex flex-col items-center xl:flex-row xl:justify-between'>
+        <div className='w-full flex text-xl font-semibold py-4 xl:justify-center'>
             <span>{('0' + Math.floor((time / 3600000) % 24)).slice(-2)}:</span>
             <span>{('0' + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
             <span>{('0' + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
             <span className=''>{('0' + Math.floor((time / 10) % 100)).slice(-2)}</span>
         </div>
-        <div className='w-full flex flex-row justify-around gap-4'>
+        <div className='w-full flex flex-row justify-around gap-4 xl:justify-end xl:w-3/6'>
             {running ? 
             (<button
             onClick={() => setRunning(false)}

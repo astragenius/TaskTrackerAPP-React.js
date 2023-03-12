@@ -49,7 +49,7 @@ const EditTask = ({taskList, setTaskList, task, index}) => {
                   flex items-center justify-center
                   overflow-x-hidden overflow-y-auto 
                   fixed inset-0 z-100'>
-                    <div className='w-9/12 max-w-lg bg-white rounded-lg shadow-md relative flex flex-col'>
+                    <div className='bg-white rounded-lg shadow-md relative flex flex-col mx-5 md:w-9/12 md:max-w-lg'>
 
                         <div className='flex flex-row justify-between p-5 border-b border-slate-200 rounded-t'>
 
